@@ -65,17 +65,21 @@ code {
 } */
 
 footer {
-  position:fixed;
-  left:0px;
-  bottom:0px;
-  height:30px;
-  width:100%;
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+  height: 30px;
+  width: 100%;
   padding-right: 10%;
-  padding-left: 10%; 
+  padding-left: 10%;
 }
 
 header {
   padding-left: 40px;
 }
 
-
+span.nameProgect {
+  padding-left: 5px;
+  /* font-weight: bold; */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
