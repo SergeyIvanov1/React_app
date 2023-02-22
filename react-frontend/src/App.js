@@ -9,6 +9,7 @@ import Tutorial from "./components/Tutorial";
 import TutorialsList from "./components/TutorialsList";
 import HeaderComponent from "./components/HeaderComponent";
 import FooterComponent from "./components/FooterComponent";
+import TableTodoComponent from "./components/TableTodoComponent";
 
 
 function App() {
@@ -21,6 +22,13 @@ function App() {
                 <Route path="/table" element={<TableComponent />} />
                 <Route path="/add" element={<AddTutorial />} />
                 <Route path="/tutorials/:id" element={<Tutorial />} />
+            </Routes>
+            <Routes>
+                {/* <Route path="/" element={<TutorialsList />} />
+                <Route path="/tutorials" element={<TutorialsList />} /> */}
+                <Route path="/todo" element={<TableTodoComponent />} />
+                {/* <Route path="/add" element={<AddTutorial />} />
+                <Route path="/tutorials/:id" element={<Tutorial />} /> */}
             </Routes>
             <FooterComponent />
         </div>

@@ -19,6 +19,7 @@ class HaederComponent extends Component {
                             <li><a href="/#" className="nav-link px-2 link-dark">Features</a></li>
                             <li><a href="/add" className="nav-link px-2 link-dark">Add</a></li>
                             <li><a href="/table" className="nav-link px-2 link-dark">Table</a></li>
+                            <li><a href="/todo" className="nav-link px-2 link-dark">Todo</a></li>
                             <li><a href="/#" className="nav-link px-2 link-dark">FAQs</a></li>
                             <li><a href="/#" className="nav-link px-2 link-dark">About</a></li>
                         </ul>

@@ -1,16 +1,16 @@
 import React, { useState, useEffect, useMemo, useRef } from "react";
-import TutorialDataService from "../services/TutorialService";
+import TaskService from "../services/TaskService";
 import { useTable } from "react-table";
 
-const TableComponent = (props) => {
-  const [tutorials, setTutorials] = useState([]);
+const TableTodoComponent = (props) => {
+  const [tasks, setTasks] = useState([]);
   const [searchTitle, setSearchTitle] = useState("");
-  const tutorialsRef = useRef();
+  const tasksRef = useRef();
 
-  tutorialsRef.current = tutorials;
+  tasksRef.current = tasks;
 
   useEffect(() => {
-    retrieveTutorials();
+    retrieveTasks();
   }, []);
 
   const onChangeSearchTitle = (e) => {
@@ -18,10 +18,10 @@ const TableComponent = (props) => {
     setSearchTitle(searchTitle);
   };
 
-  const retrieveTutorials = () => {
-    TutorialDataService.getAll()
+  const retrieveTasks = () => {
+    TaskService.getAll()
       .then((response) => {
-        setTutorials(response.data);
+        setTasks(response.data);
       })
       .catch((e) => {
         console.log(e);
@@ -29,11 +29,11 @@ const TableComponent = (props) => {
   };
 
   const refreshList = () => {
-    retrieveTutorials();
+    retrieveTasks();
   };
 
-  const removeAllTutorials = () => {
-    TutorialDataService.removeAll()
+  const removeAllTasks = () => {
+    TaskService.removeAll()
       .then((response) => {
         console.log(response.data);
         refreshList();
@@ -44,9 +44,9 @@ const TableComponent = (props) => {
   };
 
   const findByTitle = () => {
-    TutorialDataService.findByTitle(searchTitle)
+    TaskService.findByTitle(searchTitle)
       .then((response) => {
-        setTutorials(response.data);
+        setTasks(response.data);
       })
       .catch((e) => {
         console.log(e);
@@ -54,22 +54,22 @@ const TableComponent = (props) => {
   };
 
   const openTutorial = (rowIndex) => {
-    const id = tutorialsRef.current[rowIndex].id;
+    const id = tasksRef.current[rowIndex].id;
 
-    props.history.push("/tutorials/" + id);
+    props.history.push("/tasks/" + id);
   };
 
   const deleteTutorial = (rowIndex) => {
-    const id = tutorialsRef.current[rowIndex].id;
+    const id = tasksRef.current[rowIndex].id;
 
-    TutorialDataService.remove(id)
+    TaskService.remove(id)
       .then((response) => {
-        props.history.push("/tutorials");
+        props.history.push("/tasks");
 
-        let newTutorials = [...tutorialsRef.current];
+        let newTutorials = [...tasksRef.current];
         newTutorials.splice(rowIndex, 1);
 
-        setTutorials(newTutorials);
+        setTasks(newTutorials);
       })
       .catch((e) => {
         console.log(e);
@@ -86,13 +86,34 @@ const TableComponent = (props) => {
         Header: "Description",
         accessor: "description",
       },
+      // {
+      //   Header: "Content",
+      //   accessor: "content",
+      // },
       {
         Header: "Status",
-        accessor: "published",
-        Cell: (props) => {
-          return props.value ? "Published" : "Pending";
-        },
+        accessor: "status",
       },
+      {
+        Header: "Priority",
+        accessor: "priority",
+      },    
+      {
+        Header: "Hours",
+        accessor: "hours",
+      },
+      {
+        Header: "Tags",
+        accessor: "tags",
+      },
+      
+      // {
+      //   Header: "Status",
+      //   accessor: "published",
+      //   Cell: (props) => {
+      //     return props.value ? "Published" : "Pending";
+      //   },
+      // },
       {
         Header: "Actions",
         accessor: "actions",
@@ -123,66 +144,78 @@ const TableComponent = (props) => {
     prepareRow,
   } = useTable({
     columns,
-    data: tutorials,
+    data: tasks,
   });
 
   return (
     <div className="list row">
       <div className="col-md-8">
         <div className="input-group mb-3">
+
           <input
             type="text"
             className="form-control"
             placeholder="Search by title"
             value={searchTitle}
-            onChange={onChangeSearchTitle}
-          />
+            onChange={onChangeSearchTitle} />
           <div className="input-group-append">
             <button
               className="btn btn-outline-secondary"
               type="button"
-              onClick={findByTitle}
-            >
+              onClick={findByTitle}>
               Search
             </button>
+
           </div>
         </div>
       </div>
+
       <div className="col-md-12 list">
-        <table
-          className="table table-striped table-bordered"
-          {...getTableProps()}
-        >
+
+        <table className="table table-striped table-bordered" {...getTableProps()}>
+
           <thead>
             {headerGroups.map((headerGroup) => (
+
               <tr {...headerGroup.getHeaderGroupProps()}>
+
                 {headerGroup.headers.map((column) => (
                   <th {...column.getHeaderProps()}>
+
                     {column.render("Header")}
                   </th>
+
                 ))}
               </tr>
+
             ))}
           </thead>
+
           <tbody {...getTableBodyProps()}>
+
             {rows.map((row, i) => {
               prepareRow(row);
               return (
                 <tr {...row.getRowProps()}>
+
                   {row.cells.map((cell) => {
                     return (
-                      <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                      <td {...cell.getCellProps()}>
+                        {cell.render("Cell")}
+                      </td>
                     );
                   })}
+
                 </tr>
               );
             })}
           </tbody>
+
         </table>
       </div>
 
       <div className="col-md-8">
-        <button className="btn btn-sm btn-danger" onClick={removeAllTutorials}>
+        <button className="btn btn-sm btn-danger" onClick={removeAllTasks}>
           Remove All
         </button>
       </div>
@@ -190,5 +223,4 @@ const TableComponent = (props) => {
   );
 };
 
-
-export default TableComponent;
+export default TableTodoComponent;
