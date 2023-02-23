@@ -33,8 +33,8 @@ export default () => {
                </ul>
 
                <div className="col-md-3 text-end">
-                  <button type="button" className="btn btn-outline-primary me-2">Login</button>
-                  <button type="button" className="btn btn-primary">Sign-up</button>
+                  <Link to="/" className="btn btn-outline-primary me-2">Login</Link>
+                  <Link to="/register" className="btn btn-primary">Sign-up</Link>
                </div>
             </header>
          </div>
