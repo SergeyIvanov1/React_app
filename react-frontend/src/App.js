@@ -19,12 +19,12 @@ function App() {
             <HeaderComponent />
             <Routes>
                 <Route path="/" element={<TutorialsList />} />
-                <Route path="/tutorials" element={<TutorialsList />} />
-                <Route path="/table" element={<TableComponent />} />
-                <Route path="/add" element={<AddTutorial />} />
-                <Route path="/tutorials/:id" element={<Tutorial />} />
-                <Route path="/tasks/:id" element={<Task />} />
-                <Route path="/todo" element={<TableTodoComponent />} />
+                <Route path="tutorials" element={<TutorialsList />} />
+                <Route path="table" element={<TableComponent />} />
+                <Route path="add" element={<AddTutorial />} />
+                <Route path="tutorials/:id" element={<Tutorial />} />
+                <Route path="tasks/:id" element={<Task />} />
+                <Route path="todo" element={<TableTodoComponent />} />
             </Routes>
             
             <FooterComponent />
