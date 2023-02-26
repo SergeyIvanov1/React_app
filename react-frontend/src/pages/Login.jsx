@@ -18,7 +18,7 @@ export default () => {
 
    return <section>
 
-      <h3 className="text-center mb-5">Регистрация</h3>
+      <h3 className="text-center mb-5">Авторизация</h3>
 
       <form className="w-25 mx-auto" onSubmit={submit}>
          <div className="form-group">
@@ -27,17 +27,6 @@ export default () => {
             </label>
          </div>
 
-         <div className="form-group  mt-2">
-            <label className="w-100">Имя
-               <input name={"firstName"} className="form-control" placeholder="Имя" required/>
-            </label>
-         </div>
-
-         <div className="form-group  mt-2">
-            <label className="w-100">Фамилия
-               <input name={"lastName"} className="form-control" placeholder="Фамилия" required/>
-            </label>
-         </div>
 
          <div className="form-group mt-2">
             <label className="w-100">Пароль
@@ -46,11 +35,11 @@ export default () => {
          </div>
          <button type="submit" className="btn btn-primary mt-3">
             {loadingState[0] === true && <div className="spinner-border-sm spinner-border"/>}
-            <span>Зарегистрироваться</span>
+            <span>Вход</span>
          </button>
 
          {typeof loadingState[0] === "object" && <div className="text-danger mt-2">
-            Не удалось зарегистрироваться, ошибка:
+            Не удалось войти, ошибка:
             <br/>
 
             {JSON.stringify(loadingState[0], null, 3)}

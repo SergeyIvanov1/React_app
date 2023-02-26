@@ -12,6 +12,7 @@ import HeaderComponent from "./components/HeaderComponent"
 import FooterComponent from "./components/FooterComponent"
 import TableTodoComponent from "./components/TableTodoComponent"
 import Register from "./pages/Register.jsx"
+import Login from "pages/Login"
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
             <Route path="/tasks/:id" element={<Task/>}/>
             <Route path="/todo" element={<TableTodoComponent/>}/>
             <Route path="/register" element={<Register/>}/>
+            <Route path="/login" element={<Login/>}/>
          </Routes>
 
          <FooterComponent/>
