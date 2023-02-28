@@ -23,27 +23,46 @@ export default () => {
       <form className="w-25 mx-auto" onSubmit={submit}>
          <div className="form-group">
             <label className="w-100">Email
-               <input name={"email"} type={"email"} className="form-control" placeholder="Email" required/>
+               <input name={"email"} 
+                      type={"email"} 
+                      className="form-control" 
+                      placeholder="Email" required/>
+            </label>
+         </div>
+
+         <div className="form-group mt-2">
+            <label className="w-100">Username
+               <input name={"username"} 
+                      className="form-control" 
+                      placeholder="username" required/>
             </label>
          </div>
 
          <div className="form-group  mt-2">
             <label className="w-100">Имя
-               <input name={"firstName"} className="form-control" placeholder="Имя" required/>
+               <input name={"firstName"} 
+                      className="form-control" 
+                      placeholder="Имя" required/>
             </label>
          </div>
 
          <div className="form-group  mt-2">
             <label className="w-100">Фамилия
-               <input name={"lastName"} className="form-control" placeholder="Фамилия" required/>
+               <input name={"lastName"} 
+                      className="form-control" 
+                      placeholder="Фамилия" required/>
             </label>
          </div>
 
          <div className="form-group mt-2">
             <label className="w-100">Пароль
-               <input name={"password"} type="password" className="form-control" placeholder="Пароль" required/>
+               <input name={"password"} 
+                      type="password" 
+                      className="form-control" 
+                      placeholder="Пароль" required/>
             </label>
          </div>
+
          <button type="submit" className="btn btn-primary mt-3">
             {loadingState[0] === true && <div className="spinner-border-sm spinner-border"/>}
             <span>Зарегистрироваться</span>

@@ -23,14 +23,20 @@ export default () => {
       <form className="w-25 mx-auto" onSubmit={submit}>
          <div className="form-group">
             <label className="w-100">Email
-               <input name={"email"} type={"email"} className="form-control" placeholder="Email" required/>
+               <input name={"email"} 
+                      type={"email"} 
+                      className="form-control" 
+                      placeholder="Email" required/>
             </label>
          </div>
 
 
          <div className="form-group mt-2">
             <label className="w-100">Пароль
-               <input name={"password"} type="password" className="form-control" placeholder="Пароль" required/>
+               <input name={"password"} 
+                      type="password" 
+                      className="form-control" 
+                      placeholder="Пароль" required/>
             </label>
          </div>
          <button type="submit" className="btn btn-primary mt-3">

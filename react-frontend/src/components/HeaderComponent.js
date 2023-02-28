@@ -7,7 +7,7 @@ const menu = [
    {url: "", name: "Home"},
    {url: "/features", name: "Features"},
    {url: "/add", name: "Add"},
-   {url: "/table", name: "Table"},
+   // {url: "/table", name: "Table"},
    {url: "/todo", name: "Todo"},
    {url: "/FAQs", name: "FAQs"},
    {url: "/About", name: "About"}
