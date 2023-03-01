@@ -2,14 +2,18 @@ import axios from "axios";
 
 const API_URL = "http://localhost:8082/api/auth/";
 
-const register = (username, email, password) => {
-  return axios.post(API_URL + "signup", {
+// register(): POST {имя пользователя, электронная почта, пароль}
+const register = (username, firstName, lastName, email, password) => {
+  return axios.post(API_URL + "users/signup", {
     username,
+    firstName,
+    lastName,
     email,
     password,
   });
 };
 
+// login(): POST {имя пользователя, пароль} и сохранить JWTв локальном хранилище
 const login = (username, password) => {
   return axios
     .post(API_URL + "signin", {
@@ -25,10 +29,12 @@ const login = (username, password) => {
     });
 };
 
+// logout(): удалить JWTиз локального хранилища
 const logout = () => {
   localStorage.removeItem("user");
 };
 
+// getCurrentUser(): получить сохраненную информацию о пользователе (включая JWT)
 const getCurrentUser = () => {
   return JSON.parse(localStorage.getItem("user"));
 };

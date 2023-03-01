@@ -53,23 +53,23 @@ const TableTodoComponent = (props) => {
       })
    }
 
-   const openTutorial = (rowIndex) => {
+   const openTask = (rowIndex) => {
       const id = tasksRef.current[rowIndex].id
 
       props.history.push("/tasks/" + id)
    }
 
-   const deleteTutorial = (rowIndex) => {
+   const deleteTask = (rowIndex) => {
       const id = tasksRef.current[rowIndex].id
 
       TaskService.remove(id)
       .then((response) => {
          props.history.push("/tasks")
 
-         let newTutorials = [...tasksRef.current]
-         newTutorials.splice(rowIndex, 1)
+         let newTasks = [...tasksRef.current]
+         newTasks.splice(rowIndex, 1)
 
-         setTasks(newTutorials)
+         setTasks(newTasks)
       })
       .catch((e) => {
          console.log(e)
@@ -121,11 +121,11 @@ const TableTodoComponent = (props) => {
                const rowIdx = props.row.id
                return (
                   <div>
-              <span onClick={() => openTutorial(rowIdx)}>
+              <span onClick={() => openTask(rowIdx)}>
                 <i className="far fa-edit action mr-2"></i>
               </span>
 
-                     <span onClick={() => deleteTutorial(rowIdx)}>
+                     <span onClick={() => deleteTask(rowIdx)}>
                 <i className="fas fa-trash action"></i>
               </span>
                   </div>
