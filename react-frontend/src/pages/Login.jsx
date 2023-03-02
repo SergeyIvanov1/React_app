@@ -1,56 +1,56 @@
-import {useState} from "react"
-import {useNavigate} from "react-router-dom"
-import {UserServices} from "services/User.js"
+// import {useState} from "react"
+// import {useNavigate} from "react-router-dom"
+// import {UserServices} from "services/User.js"
 
-export default () => {
-   const loadingState = useState(false)
-   const navigate = useNavigate()
+// export default () => {
+//    const loadingState = useState(false)
+//    const navigate = useNavigate()
 
-   const submit = (e) => {
-      e.preventDefault()
-      loadingState[1](true)
-      const data = new FormData(e.target)
-      UserServices.register(data).then(() => {
-         navigate("/")
-         loadingState[1](false)
-      }).catch((e) => loadingState[1](e.response?.data))
-   }
+//    const submit = (e) => {
+//       e.preventDefault()
+//       loadingState[1](true)
+//       const data = new FormData(e.target)
+//       UserServices.register(data).then(() => {
+//          navigate("/")
+//          loadingState[1](false)
+//       }).catch((e) => loadingState[1](e.response?.data))
+//    }
 
-   return <section>
+//    return <section>
 
-      <h3 className="text-center mb-5">Авторизация</h3>
+//       <h3 className="text-center mb-5">Авторизация</h3>
 
-      <form className="w-25 mx-auto" onSubmit={submit}>
-         <div className="form-group">
-            <label className="w-100">Email
-               <input name={"email"} 
-                      type={"email"} 
-                      className="form-control" 
-                      placeholder="Email" required/>
-            </label>
-         </div>
+//       <form className="w-25 mx-auto" onSubmit={submit}>
+//          <div className="form-group">
+//             <label className="w-100">Email
+//                <input name={"email"} 
+//                       type={"email"} 
+//                       className="form-control" 
+//                       placeholder="Email" required/>
+//             </label>
+//          </div>
 
 
-         <div className="form-group mt-2">
-            <label className="w-100">Пароль
-               <input name={"password"} 
-                      type="password" 
-                      className="form-control" 
-                      placeholder="Пароль" required/>
-            </label>
-         </div>
-         <button type="submit" className="btn btn-primary mt-3">
-            {loadingState[0] === true && <div className="spinner-border-sm spinner-border"/>}
-            <span>Вход</span>
-         </button>
+//          <div className="form-group mt-2">
+//             <label className="w-100">Пароль
+//                <input name={"password"} 
+//                       type="password" 
+//                       className="form-control" 
+//                       placeholder="Пароль" required/>
+//             </label>
+//          </div>
+//          <button type="submit" className="btn btn-primary mt-3">
+//             {loadingState[0] === true && <div className="spinner-border-sm spinner-border"/>}
+//             <span>Вход</span>
+//          </button>
 
-         {typeof loadingState[0] === "object" && <div className="text-danger mt-2">
-            Не удалось войти, ошибка:
-            <br/>
+//          {typeof loadingState[0] === "object" && <div className="text-danger mt-2">
+//             Не удалось войти, ошибка:
+//             <br/>
 
-            {JSON.stringify(loadingState[0], null, 3)}
-         </div>}
+//             {JSON.stringify(loadingState[0], null, 3)}
+//          </div>}
 
-      </form>
-   </section>
-}
+//       </form>
+//    </section>
+// }

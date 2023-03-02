@@ -1,11 +1,11 @@
 import {axiosInstance} from "../http-common"
 
 export default {
-   getAll     : () => axiosInstance.get("/tasks"),
-   get        : id => axiosInstance.get(`/tasks/${id}`),
-   create     : data => axiosInstance.post("/tasks", data),
-   update     : (id, data) => axiosInstance.put(`/tasks/${id}`, data),
-   remove     : id => axiosInstance.delete(`/tasks/${id}`),
-   removeAll  : () => axiosInstance.delete(`/tasks`),
-   findByTitle: title => axiosInstance.get(`/tasks?title=${title}`),
+   getAll     : () => axiosInstance.get("/todo/tasks"),
+   get        : id => axiosInstance.get(`/todo/tasks/${id}`),
+   create     : data => axiosInstance.post("/todo/tasks", data),
+   update     : (id, data) => axiosInstance.put(`/todo/tasks/${id}`, data),
+   remove     : id => axiosInstance.delete(`/todo/tasks/${id}`),
+   removeAll  : () => axiosInstance.delete(`/todo/tasks`),
+   findByTitle: title => axiosInstance.get(`/todo/tasks?title=${title}`),
 }

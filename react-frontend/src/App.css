@@ -85,3 +85,7 @@ label {
   -webkit-border-radius: 50%;
   border-radius: 50%;
 }
+
+.navbar{
+  margin-right: 60px;
+}

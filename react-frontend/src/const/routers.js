@@ -15,7 +15,7 @@ import React from "react"
 import {Verify} from "pages/Verify"
 
 export const ROUTERS = [
-   {path: "/", element: <TasksList/>},
+   {path: "/", element: <Home/>},
    {path: "/tasks", element: <TasksList/>},
    {path: "/add", element: <AddTask/>},
    {path: "/tasks/:id", element: <Task/>},

@@ -6,6 +6,7 @@ export const Verify = () => {
 
    //достаём из параметров токен
    const {token} = useParams()
+   console.log({token})
    //используем навигатор для перемещения по сайту
    const navigator = useNavigate()
    //создаём состояния загрузки
@@ -13,21 +14,23 @@ export const Verify = () => {
 
 //после рендера страницы сразу шлём запрос на сервер
    useEffect(() => {
-      verifyEmailService.get({token}).then(() => {
+      verifyEmailService.get({token})
+      .then(() => {
          successState[1]("success")
-         setTimeout(() => {navigator("/login")}, 3000)
+         setTimeout(() => {navigator("/login2")}, 3000)
+         // return () => clearTimeout(timer);
       })
       .catch(() => successState[1]("failed"))
    }, [])
 
    const textProcess = {
-      loading: "идёт подтверждение...",
-      success: "почта подтверждена",
-      failed : "не удалось подтвердить почту",
+      loading: "Confirmation of existing mail is in progress...",
+      success: "We are thank you for registration and suggest passing to a login page.",
+      failed : "Confirmation a mail is failed.",
    }
 
    return (<div>
-      <h5>Подтверждение email</h5>
+      <h3>Confirmation of existing mail</h3>
 
       <div>{textProcess[successState[0]]}</div>
    </div>)

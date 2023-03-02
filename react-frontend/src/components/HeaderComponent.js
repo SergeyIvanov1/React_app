@@ -4,16 +4,16 @@ import "../index.css"
 import {Link, NavLink} from "react-router-dom"
 
 const menu = [
-   {url: "", name: "Home"},
-   {url: "/features", name: "Features"},
-   {url: "/add", name: "Add"},
+   {url: "/tasks", name: "List tasks"},
+   // {url: "/features", name: "Features"},
+   {url: "/add", name: "Add task"},
    // {url: "/table", name: "Table"},
-   {url: "/todo", name: "Todo"},
-   {url: "/FAQs", name: "FAQs"},
-   {url: "/About", name: "About"}
+   {url: "/todo", name: "Todo table"}
+   // {url: "/FAQs", name: "FAQs"},
+   // {url: "/About", name: "About"}
 ]
 
-export default () => {
+const HeaderComponent = () => {
 
    return (
       <div>
@@ -31,13 +31,15 @@ export default () => {
                         className={x => "nav-link px-2 " + (x.isActive ? "link-dark" : "link-secondary")}
                         to={x.url}>{x.name}</NavLink></li>)}
                </ul>
-
+{/* 
                <div className="col-md-3 text-end">
                   <Link to="/login" className="btn btn-outline-primary me-2">Login</Link>
                   <Link to="/register" className="btn btn-primary">Sign-up</Link>
-               </div>
+               </div> */}
             </header>
          </div>
       </div>
    )
 }
+
+export default HeaderComponent;

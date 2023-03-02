@@ -1,14 +1,13 @@
-import React, {useEffect, useState} from "react"
-import {Link, Route, Routes} from "react-router-dom"
+import React, { useEffect, useState } from "react"
+import { Link, Route, Routes } from "react-router-dom"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "./App.css"
-// import TableComponent from "./components/TableComponent"
-// import Tutorial from "./components/Tutorial"
+// import {Calendar2Check} from "react-bootstrap-icons"
 import HeaderComponent from "./components/HeaderComponent"
 import FooterComponent from "./components/FooterComponent"
 
 import AuthService from "./services/auth.service"
-import {ROUTERS} from "const/routers"
+import { ROUTERS } from "const/routers"
 
 const App = () => {
    const [showModeratorBoard, setShowModeratorBoard] = useState(false)
@@ -30,14 +29,16 @@ const App = () => {
    }
 
 
-// function App() {
+   // function App() {
    return (
 
       <div>
-         <nav className="navbar navbar-expand navbar-dark bg-dark">
-            <Link to={"/"} className="navbar-brand">
+         <nav className="navbar navbar-expand navbar-light bg-light">
+            {/* <Link to={"/"} className="navbar-brand">
                bezKoder
-            </Link>
+            </Link> */}
+
+
             <div className="navbar-nav mr-auto">
                <li className="nav-item">
                   <Link to={"/home"} className="nav-link">
@@ -101,12 +102,14 @@ const App = () => {
          </nav>
 
          <div className="container">
-            <HeaderComponent/>
+            {currentUser ? (
+            <HeaderComponent/>) : (<div></div>)}
+            
             <Routes>
                {ROUTERS.map(x => <Route {...x}/>)}
             </Routes>
-
-            <FooterComponent/>
+            
+            <FooterComponent />
          </div>
       </div>
    )

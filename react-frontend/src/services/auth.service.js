@@ -21,15 +21,17 @@ const login = (username, password) => {
       password,
     })
     .then((response) => {
+      console.log('response.data = ' + response.data) // TODO remove
+      console.log('response.data.accessToken = ' + response.data.accessToken) // TODO remove
       if (response.data.accessToken) {
         localStorage.setItem("user", JSON.stringify(response.data));
       }
-
+      
       return response.data;
     });
 };
 
-// logout(): удалить JWTиз локального хранилища
+// logout(): удалить JWT из локального хранилища
 const logout = () => {
   localStorage.removeItem("user");
 };
