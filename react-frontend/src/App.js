@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { Link, Route, Routes } from "react-router-dom"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "./App.css"
-// import {Calendar2Check} from "react-bootstrap-icons"
+import {Calendar2Check} from "react-bootstrap-icons"
 import HeaderComponent from "./components/HeaderComponent"
 import FooterComponent from "./components/FooterComponent"
 
@@ -37,10 +37,14 @@ const App = () => {
             {/* <Link to={"/"} className="navbar-brand">
                bezKoder
             </Link> */}
-
+            <Link to="/"
+                  className="task-tracking d-flex align-items-center mb-2 mb-md-0 text-dark text-decoration-none">
+                  <Calendar2Check color="orange" size={36} /><span className="nameProgect">Task tracking</span>
+               </Link>
 
             <div className="navbar-nav mr-auto">
-               <li className="nav-item">
+               
+               <li className="home-element nav-item">
                   <Link to={"/home"} className="nav-link">
                      Home
                   </Link>
@@ -87,18 +91,19 @@ const App = () => {
             ) : (
                <div className="navbar-nav ml-auto">
                   <li className="nav-item">
-                     <Link to={"/login2"} className="nav-link">
+                     <Link to={"/login"} className="nav-link">
                         Login
                      </Link>
                   </li>
 
                   <li className="nav-item">
-                     <Link to={"/register2"} className="nav-link">
+                     <Link to={"/register"} className="nav-link">
                         Sign Up
                      </Link>
                   </li>
                </div>
             )}
+            
          </nav>
 
          <div className="container">

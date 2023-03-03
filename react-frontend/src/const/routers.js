@@ -2,11 +2,11 @@ import TasksList from "components/TasksList"
 import AddTask from "components/AddTask"
 import Task from "components/Task"
 import TableTodoComponent from "components/TableTodoComponent"
-import Register from "pages/Register"
-import Login from "pages/Login"
+// import Register from "pages/Register"
+// import Login from "pages/Login"
 import Home from "components/Home"
-import Login2 from "components/login2"
-import Register2 from "components/Register2"
+import Login from "components/login"
+import Register from "components/Register"
 import Profile from "components/Profile"
 import BoardUser from "components/BoardUser"
 import BoardModerator from "components/BoardModerator"
@@ -23,8 +23,8 @@ export const ROUTERS = [
    {path: "/register", element: <Register/>},
    {path: "/login", element: <Login/>},
    {path: "/home", element: <Home/>},
-   {path: "/login2", element: <Login2/>},
-   {path: "/register2", element: <Register2/>},
+   // {path: "/login2", element: <Login2/>},
+   // {path: "/register2", element: <Register2/>},
    {path: "/profile", element: <Profile/>},
    {path: "/user", element: <BoardUser/>},
    {path: "/mod", element: <BoardModerator/>},

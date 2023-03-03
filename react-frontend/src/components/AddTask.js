@@ -1,16 +1,16 @@
-import React, {useState} from "react"
+import React, { useState } from "react"
 import TasklService from "../services/TaskService"
 
 const AddTask = () => {
    const initialTaskState = {
-      id         : null,
-      title      : "",
+      id: null,
+      title: "",
       description: "",
       content: "",
       status: "",
       priority: "",
       hours: null,
-    //   published  : false
+      //   published  : false
    }
    // определяем и устанавливаем начальное состояние: task & submitted
    const [task, setTask] = useState(initialTaskState)
@@ -18,13 +18,13 @@ const AddTask = () => {
 
    // функцию для отслеживания значений ввода и устанавливаем это состояние для изменений
    const handleInputChange = event => {
-      const {name, value} = event.target
-      setTask({...task, [name]: value})
+      const { name, value } = event.target
+      setTask({ ...task, [name]: value })
    }
 
    const saveTask = () => {
       const data = {
-         title      : task.title,
+         title: task.title,
          description: task.description,
          content: task.content,
          status: task.status,
@@ -34,14 +34,14 @@ const AddTask = () => {
 
       // функция для получения Task состояния и отправки запроса POST в веб-API
       TasklService.create(data)
-      .then(response => {
-         setTask(response.data)
-         setSubmitted(true)
-         console.log(response.data)
-      })
-      .catch(e => {
-         console.log(e)
-      })
+         .then(response => {
+            setTask(response.data)
+            setSubmitted(true)
+            console.log(response.data)
+         })
+         .catch(e => {
+            console.log(e)
+         })
    }
 
    const newTask = () => {
@@ -102,6 +102,13 @@ const AddTask = () => {
                   />
                </div>
 
+               {/* <select className="form-select form-select-sm" aria-label=".form-select-sm example" required>
+                  <option selected>Open this select menu</option>
+                  <option value={task.status}>One</option>
+                  <option value={task.status}>Two</option>
+                  <option value={task.status}>Three</option>
+               </select> */}
+
                <div className="form-group">
                   <label htmlFor="status">Status</label>
                   <input
@@ -139,8 +146,8 @@ const AddTask = () => {
                      onChange={handleInputChange}
                      name="hours"
                   />
-               </div>               
-         
+               </div>
+
                <button onClick={saveTask} className="btn btn-success">
                   Submit
                </button>
