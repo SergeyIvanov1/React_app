@@ -1,11 +1,15 @@
-import React, {useState, useEffect, useMemo, useRef} from "react"
+import React, { useState, useEffect, useMemo, useRef } from "react"
 import TaskService from "../../services/TaskService"
-import {useTable} from "react-table"
- 
+import { useTable } from "react-table"
+import { DoorOpen } from "react-bootstrap-icons";
+import { useNavigate } from 'react-router-dom';
+import { Link } from "react-router-dom"
+
 const TableTodoComponent = (props) => {
    const [tasks, setTasks] = useState([])
    const [searchTitle, setSearchTitle] = useState("")
    const tasksRef = useRef()
+   let navigate = useNavigate();
 
    tasksRef.current = tasks
 
@@ -20,12 +24,12 @@ const TableTodoComponent = (props) => {
 
    const retrieveTasks = () => {
       TaskService.getAll()
-      .then((response) => {
-         setTasks(response.data)
-      })
-      .catch((e) => {
-         console.log(e)
-      })
+         .then((response) => {
+            setTasks(response.data)
+         })
+         .catch((e) => {
+            console.log(e)
+         })
    }
 
    const refreshList = () => {
@@ -34,56 +38,50 @@ const TableTodoComponent = (props) => {
 
    const removeAllTasks = () => {
       TaskService.removeAll()
-      .then((response) => {
-         console.log(response.data)
-         refreshList()
-      })
-      .catch((e) => {
-         console.log(e)
-      })
+         .then((response) => {
+            console.log(response.data)
+            refreshList()
+         })
+         .catch((e) => {
+            console.log(e)
+         })
    }
 
    const findByTitle = () => {
       TaskService.findByTitle(searchTitle)
-      .then((response) => {
-         setTasks(response.data)
-      })
-      .catch((e) => {
-         console.log(e)
-      })
-   }
-
-   const openTask = (rowIndex) => {
-      const id = tasksRef.current[rowIndex].id
-
-      props.history.push("/tasks/" + id)
+         .then((response) => {
+            setTasks(response.data)
+         })
+         .catch((e) => {
+            console.log(e)
+         })
    }
 
    const deleteTask = (rowIndex) => {
       const id = tasksRef.current[rowIndex].id
 
       TaskService.remove(id)
-      .then((response) => {
-         props.history.push("/tasks")
+         .then((response) => {
+            navigate("/tasks");
 
-         let newTasks = [...tasksRef.current]
-         newTasks.splice(rowIndex, 1)
+            let newTasks = [...tasksRef.current]
+            newTasks.splice(rowIndex, 1)
 
-         setTasks(newTasks)
-      })
-      .catch((e) => {
-         console.log(e)
-      })
+            setTasks(newTasks)
+         })
+         .catch((e) => {
+            console.log(e)
+         })
    }
 
    const columns = useMemo(
       () => [
          {
-            Header  : "Title",
+            Header: "Title",
             accessor: "title",
          },
          {
-            Header  : "Description",
+            Header: "Description",
             accessor: "description",
          },
          // {
@@ -91,19 +89,19 @@ const TableTodoComponent = (props) => {
          //   accessor: "content",
          // },
          {
-            Header  : "Status",
+            Header: "Status",
             accessor: "status",
          },
          {
-            Header  : "Priority",
+            Header: "Priority",
             accessor: "priority",
          },
          {
-            Header  : "Hours",
+            Header: "Hours",
             accessor: "hours",
          },
          {
-            Header  : "Tags",
+            Header: "Tags",
             accessor: "tags",
          },
 
@@ -115,19 +113,17 @@ const TableTodoComponent = (props) => {
          //   },
          // },
          {
-            Header  : "Actions",
+            Header: "Actions",
             accessor: "actions",
-            Cell    : (props) => {
+            Cell: (props) => {
                const rowIdx = props.row.id
                return (
-                  <div>
-              <span onClick={() => openTask(rowIdx)}>
-                <i className="far fa-edit action mr-2"></i>
-              </span>
-
-                     <span onClick={() => deleteTask(rowIdx)}>
-                <i className="fas fa-trash action"></i>
-              </span>
+                  <div className="navbar-nav ml-auto">
+                     <li className="nav-item">
+                        <Link to={"/tasks/" + tasksRef.current[rowIdx].id} className="nav-link">
+                           <DoorOpen style={{ 'margin-left': '20px' }} />
+                        </Link>
+                     </li>
                   </div>
                )
             },
@@ -157,7 +153,7 @@ const TableTodoComponent = (props) => {
                   className="form-control"
                   placeholder="Search by title"
                   value={searchTitle}
-                  onChange={onChangeSearchTitle}/>
+                  onChange={onChangeSearchTitle} />
                <div className="input-group-append">
                   <button
                      className="btn btn-outline-secondary"
@@ -175,40 +171,40 @@ const TableTodoComponent = (props) => {
             <table className="table table-striped table-bordered" {...getTableProps()}>
 
                <thead>
-               {headerGroups.map((headerGroup) => (
+                  {headerGroups.map((headerGroup) => (
 
-                  <tr {...headerGroup.getHeaderGroupProps()}>
+                     <tr {...headerGroup.getHeaderGroupProps()}>
 
-                     {headerGroup.headers.map((column) => (
-                        <th {...column.getHeaderProps()}>
+                        {headerGroup.headers.map((column) => (
+                           <th {...column.getHeaderProps()}>
 
-                           {column.render("Header")}
-                        </th>
+                              {column.render("Header")}
+                           </th>
 
-                     ))}
-                  </tr>
+                        ))}
+                     </tr>
 
-               ))}
+                  ))}
                </thead>
 
                <tbody {...getTableBodyProps()}>
 
-               {rows.map((row, i) => {
-                  prepareRow(row)
-                  return (
-                     <tr {...row.getRowProps()}>
+                  {rows.map((row, i) => {
+                     prepareRow(row)
+                     return (
+                        <tr {...row.getRowProps()}>
 
-                        {row.cells.map((cell) => {
-                           return (
-                              <td {...cell.getCellProps()}>
-                                 {cell.render("Cell")}
-                              </td>
-                           )
-                        })}
+                           {row.cells.map((cell) => {
+                              return (
+                                 <td {...cell.getCellProps()}>
+                                    {cell.render("Cell")}
+                                 </td>
+                              )
+                           })}
 
-                     </tr>
-                  )
-               })}
+                        </tr>
+                     )
+                  })}
                </tbody>
 
             </table>

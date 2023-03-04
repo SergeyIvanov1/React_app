@@ -96,10 +96,24 @@ label {
 
 button.adding {
   margin-top: 20px;
+  margin-right: 25px;
 }
 
 div.task-card{
   background-color: rgb(248, 241, 231) ;
   max-width: '18rem';
+}
+label {
+  margin-bottom: 5px;
+}
+div.comments {
+  background-color: aliceblue ;
+  border: 5px solid lightblue;
+}
+
+div.comments-field {
+  background-color: azure;
+  width: 99,5%;
+  height: 91%;;
 }
 

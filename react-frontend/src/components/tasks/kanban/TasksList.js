@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import TaskService from "../../services/TaskService";
-import { Link } from "react-router-dom";
+import TaskService from "../../../services/TaskService";
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import TaskCard from './TaskCard';
 import styled from '@emotion/styled';
@@ -103,8 +102,6 @@ const TasksList = () => {
         }
     };
 
-
-
     const onChangeSearchTitle = e => {
         const searchTitle = e.target.value;
         setSearchTitle(searchTitle);
@@ -155,10 +152,8 @@ const TasksList = () => {
     };
 
     return (
-
-        <div className="list row">
+        <div >
             <div className="col-md-8">
-
                 <div className="input-group mb-3">
                     <input
                         type="text"
@@ -176,7 +171,6 @@ const TasksList = () => {
                         </button>
                     </div>
                 </div>
-
             </div>
 
             <div className="col-md-6">
@@ -195,7 +189,6 @@ const TasksList = () => {
                                 return (
                                     // работаем с областью Column. У каждой области назначаем columnId
                                     <Droppable key={columnId} droppableId={columnId}>
-
 
                                         {(provided, snapshot) => (
 
@@ -216,82 +209,10 @@ const TasksList = () => {
                                     </Droppable>
                                 );
                             })}
-
                         </TaskColumnStyles>
                     </Container>
-
                 </DragDropContext>
-
-
-
-                <button
-                    className="m-3 btn btn-sm btn-danger"
-                    onClick={removeAllTasks}>
-                    Remove All
-                </button>
-            </div>
-            
-            <div className="col-md-6">
-                {currentTask ? (
-                    <div>
-                        <h4>Task</h4>
-                        <div>
-                            <label>
-                                <strong>Title:</strong>
-                            </label>{" "}
-                            {currentTask.title}
-                        </div>
-                        <div>
-                            <label>
-                                <strong>Description:</strong>
-                            </label>{" "}
-                            {currentTask.description}
-                        </div>
-                        <div>
-                            <label>
-                                <strong>Content:</strong>
-                            </label>{" "}
-                            {currentTask.content}
-                        </div>
-                        <div>
-                            <label>
-                                <strong>Status:</strong>
-                            </label>{" "}
-                            {currentTask.status}
-                        </div>
-                        <div>
-                            <label>
-                                <strong>Priority:</strong>
-                            </label>{" "}
-                            {currentTask.priority}
-                        </div>
-                        <div>
-                            <label>
-                                <strong>Hours:</strong>
-                            </label>{" "}
-                            {currentTask.hours}
-                        </div>
-                        {/* <div>
-                            <label>
-                                <strong>Status:</strong>
-                            </label>{" "}
-                            {currentTask.published ? "Published" : "Pending"}
-                        </div> */}
-                        <div>Edit</div>
-                        <Link
-                            to={"/tasks/" + currentTask.id}
-                            className="badge badge-warning">
-                            Edit
-                        </Link>
-                    </div>
-                ) : (
-                    <div>
-                        <br />
-                        <p>Please click on a Task...</p>
-
-                    </div>
-                )}
-            </div>
+            </div>          
         </div>
     );
 };

@@ -1,4 +1,4 @@
-import TasksList from "components/kanban/TasksList"
+import TasksList from "components/tasks/kanban/TasksList"
 import AddTask from "components/tasks/AddTask"
 import Task from "components/tasks/Task"
 import TableTodoComponent from "components/tasks/TableTodoComponent"
