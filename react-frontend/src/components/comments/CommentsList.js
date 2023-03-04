@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
-import TaskService from "../services/TaskService";
+import CommentDataService from "../../services/CommentService";
 import { Link } from "react-router-dom";
 
-const TasksList = () => {
-    const [tasks, setTasks] = useState([]);
-    const [currentTask, setCurrentTask] = useState(null);
+const CommentsList = () => {
+    const [comments, setComments] = useState([]);
+    const [currentComment, setCurrentComment] = useState(null);
     const [currentIndex, setCurrentIndex] = useState(-1);
     const [searchTitle, setSearchTitle] = useState("");
 
     useEffect(() => {
-        retrieveTasks();
+        retrieveComments();
     }, []);
 
     const onChangeSearchTitle = e => {
@@ -17,10 +17,10 @@ const TasksList = () => {
         setSearchTitle(searchTitle);
     };
 
-    const retrieveTasks = () => {
-        TaskService.getAll()
+    const retrieveComments = () => {
+        CommentDataService.getAll()
             .then(response => {
-                setTasks(response.data);
+                setComments(response.data);
                 console.log(response.data);
             })
             .catch(e => {
@@ -29,18 +29,18 @@ const TasksList = () => {
     };
 
     const refreshList = () => {
-        retrieveTasks();
-        setCurrentTask(null);
+        retrieveComments();
+        setCurrentComment(null);
         setCurrentIndex(-1);
     };
 
-    const setActiveTask = (task, index) => {
-        setCurrentTask(task);
+    const setActiveComment = (comment, index) => {
+        setCurrentComment(comment);
         setCurrentIndex(index);
     };
 
-    const removeAllTasks = () => {
-        TaskService.removeAll()
+    const removeAllComments = () => {
+        CommentDataService.removeAll()
             .then(response => {
                 console.log(response.data);
                 refreshList();
@@ -51,9 +51,9 @@ const TasksList = () => {
     };
 
     const findByTitle = () => {
-        TaskService.findByTitle(searchTitle)
+        CommentDataService.findByTitle(searchTitle)
             .then(response => {
-                setTasks(response.data);
+                setComments(response.data);
                 console.log(response.data);
             })
             .catch(e => {
@@ -84,79 +84,56 @@ const TasksList = () => {
                 </div>
             </div>
             <div className="col-md-6">
-                <h4>Tasks List</h4>
+                <h4>Comments List</h4>
 
                 <ul className="list-group">
-                    {tasks &&
-                        tasks.map((task, index) => (
+                    {comments &&
+                        comments.map((comment, index) => (
                             <li
                                 className={
                                     "list-group-item " + (index === currentIndex ? "active" : "")
                                 }
-                                onClick={() => setActiveTask(task, index)}
+                                onClick={() => setActiveComment(comment, index)}
                                 key={index}
                             >
-                                {task.title}
+                                {comment.title}
                             </li>
                         ))}
                 </ul>
 
                 <button
                     className="m-3 btn btn-sm btn-danger"
-                    onClick={removeAllTasks}
+                    onClick={removeAllComments}
                 >
                     Remove All
                 </button>
             </div>
             <div className="col-md-6">
-                {currentTask ? (
+                {currentComment ? (
                     <div>
-                        <h4>Task</h4>
+                        <h4>Comment</h4>
                         <div>
                             <label>
                                 <strong>Title:</strong>
                             </label>{" "}
-                            {currentTask.title}
+                            {currentComment.title}
                         </div>
                         <div>
                             <label>
                                 <strong>Description:</strong>
                             </label>{" "}
-                            {currentTask.description}
-                        </div>
-                        <div>
-                            <label>
-                                <strong>Content:</strong>
-                            </label>{" "}
-                            {currentTask.content}
+                            {currentComment.description}
                         </div>
                         <div>
                             <label>
                                 <strong>Status:</strong>
                             </label>{" "}
-                            {currentTask.status}
+                            {currentComment.published ? "Published" : "Pending"}
                         </div>
-                        <div>
-                            <label>
-                                <strong>Priority:</strong>
-                            </label>{" "}
-                            {currentTask.priority}
-                        </div>
-                        <div>
-                            <label>
-                                <strong>Hours:</strong>
-                            </label>{" "}
-                            {currentTask.hours}
-                        </div>
-                        {/* <div>
-                            <label>
-                                <strong>Status:</strong>
-                            </label>{" "}
-                            {currentTask.published ? "Published" : "Pending"}
-                        </div> */}
+
                         <div>Edit</div>
                         <Link
-                            to={"/tasks/" + currentTask.id}
+                            to={"/comments/" + currentComment.id}
                             className="badge badge-warning">
                             Edit
                         </Link>
@@ -164,13 +141,7 @@ const TasksList = () => {
                 ) : (
                     <div>
                         <br />
-                        <p>Please click on a Task...</p>
-                        <div className="card text-bg-info mb-3" style={{'max-width': '18rem'}}>
-                            <div className="card-header">Header</div>
-                            <div className="card-body">
-                                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                        </div>
+                        <p>Please click on a Comment...</p>
                     </div>
                 )}
             </div>
@@ -178,4 +149,4 @@ const TasksList = () => {
     );
 };
 
-export default TasksList;
+export default CommentsList;

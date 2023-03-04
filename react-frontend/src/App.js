@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { Link, Route, Routes } from "react-router-dom"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "./App.css"
-import {Calendar2Check} from "react-bootstrap-icons"
+import { Calendar2Check } from "react-bootstrap-icons"
 import HeaderComponent from "./components/HeaderComponent"
 import FooterComponent from "./components/FooterComponent"
 
@@ -34,16 +34,14 @@ const App = () => {
 
       <div>
          <nav className="navbar navbar-expand navbar-light bg-light">
-            {/* <Link to={"/"} className="navbar-brand">
-               bezKoder
-            </Link> */}
+          
             <Link to="/"
-                  className="task-tracking d-flex align-items-center mb-2 mb-md-0 text-dark text-decoration-none">
-                  <Calendar2Check color="orange" size={36} /><span className="nameProgect">Task tracking</span>
-               </Link>
+               className="task-tracking d-flex align-items-center mb-2 mb-md-0 text-dark text-decoration-none">
+               <Calendar2Check color="orange" size={36} /><span className="nameProgect">Task tracking</span>
+            </Link>
 
             <div className="navbar-nav mr-auto">
-               
+
                <li className="home-element nav-item">
                   <Link to={"/home"} className="nav-link">
                      Home
@@ -77,11 +75,7 @@ const App = () => {
 
             {currentUser ? (
                <div className="navbar-nav ml-auto">
-                  <li className="nav-item">
-                     <Link to={"/profile"} className="nav-link">
-                        {currentUser.username}
-                     </Link>
-                  </li>
+               
                   <li className="nav-item">
                      <a href="/login" className="nav-link" onClick={logOut}>
                         LogOut
@@ -103,17 +97,17 @@ const App = () => {
                   </li>
                </div>
             )}
-            
+
          </nav>
 
          <div className="container">
             {currentUser ? (
-            <HeaderComponent/>) : (<div></div>)}
-            
+               <HeaderComponent />) : (<div></div>)}
+
             <Routes>
-               {ROUTERS.map(x => <Route {...x}/>)}
+               {ROUTERS.map(x => <Route {...x} />)}
             </Routes>
-            
+         
             <FooterComponent />
          </div>
       </div>

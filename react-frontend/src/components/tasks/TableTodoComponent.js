@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useMemo, useRef} from "react"
-import TaskService from "../services/TaskService"
+import TaskService from "../../services/TaskService"
 import {useTable} from "react-table"
  
 const TableTodoComponent = (props) => {

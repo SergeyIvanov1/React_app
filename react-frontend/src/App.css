@@ -94,4 +94,12 @@ label {
   margin-left: 20px;
 }
 
+button.adding {
+  margin-top: 20px;
+}
+
+div.task-card{
+  background-color: rgb(248, 241, 231) ;
+  max-width: '18rem';
+}
 

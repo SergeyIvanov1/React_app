@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import TasklService from "../services/TaskService"
+import TasklService from "../../services/TaskService"
 
 const AddTask = () => {
    const initialTaskState = {
@@ -7,8 +7,8 @@ const AddTask = () => {
       title: "",
       description: "",
       content: "",
-      status: "",
-      priority: "",
+      status: "To Do",
+      priority: "Medium",
       hours: null,
       //   published  : false
    }
@@ -63,6 +63,7 @@ const AddTask = () => {
             </div>
          ) : (
             <div>
+               <h2>Adding а task</h2>
                <div className="form-group">
                   <label htmlFor="title">Title</label>
                   <input
@@ -89,51 +90,19 @@ const AddTask = () => {
                   />
                </div>
 
-               <div className="form-group">
-                  <label htmlFor="content">Content</label>
-                  <input
-                     type="text"
+               <div class="form-group">
+                  <label for="exampleFormControlTextarea1">Content</label>
+                  <textarea 
                      className="form-control"
-                     id="content"
-                     required
+                     id="exampleFormControlTextarea1"
+                     rows="3"
+                     name="content"
                      value={task.content}
                      onChange={handleInputChange}
-                     name="content"
-                  />
-               </div>
-
-               {/* <select className="form-select form-select-sm" aria-label=".form-select-sm example" required>
-                  <option selected>Open this select menu</option>
-                  <option value={task.status}>One</option>
-                  <option value={task.status}>Two</option>
-                  <option value={task.status}>Three</option>
-               </select> */}
-
-               <div className="form-group">
-                  <label htmlFor="status">Status</label>
-                  <input
-                     type="text"
-                     className="form-control"
-                     id="status"
-                     required
-                     value={task.status}
-                     onChange={handleInputChange}
-                     name="status"
-                  />
-               </div>
-
-               <div className="form-group">
-                  <label htmlFor="priority">Priority</label>
-                  <input
-                     type="text"
-                     className="form-control"
-                     id="priority"
-                     required
-                     value={task.priority}
-                     onChange={handleInputChange}
-                     name="priority"
-                  />
-               </div>
+                     placeholder="Full description"
+                     required>
+                  </textarea>
+               </div>             
 
                <div className="form-group">
                   <label htmlFor="hours">Hours</label>
@@ -144,12 +113,33 @@ const AddTask = () => {
                      required
                      value={task.hours}
                      onChange={handleInputChange}
-                     name="hours"
-                  />
+                     name="hours" />
                </div>
 
-               <button onClick={saveTask} className="btn btn-success">
-                  Submit
+               <div className="form-group">
+                  <label htmlFor="content">Status</label>
+                  <select className="form-select form-select-md" aria-label=".form-select-md example" required>
+                     <option selected>{task.status}</option>
+                     <option value={task.status}>To Do</option>
+                     <option value={task.status}>In progress</option>
+                     <option value={task.status}>Code review</option>
+                     <option value={task.status}>Tests</option>
+                     <option value={task.status}>Done</option>
+                  </select>
+               </div>
+
+               <div className="form-group">
+                  <label htmlFor="content">Priority</label>
+                  <select className="form-select form-select-md" aria-label=".form-select-md example" required>
+                     <option selected>{task.priority}</option>
+                     <option value={task.priority}>Low</option>
+                     <option value={task.priority}>Medium</option>
+                     <option value={task.priority}>High</option>
+                  </select>
+               </div>
+
+               <button onClick={saveTask} className="adding btn btn-success">
+                  Add
                </button>
             </div>
          )}

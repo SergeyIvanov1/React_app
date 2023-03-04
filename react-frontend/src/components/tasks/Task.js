@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
-import TaskService from "../services/TaskService";
+import TaskService from "../../services/TaskService";
 
 const Task = props => {
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
-import CommentDataService from "../services/CommentService";
+import CommentDataService from "../../services/CommentService";
 
 const Comment = props => {
     const { id }= useParams();
