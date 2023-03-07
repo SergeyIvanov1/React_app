@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react"
-import { Link, Route, Routes } from "react-router-dom"
+import React, {useEffect, useState} from "react"
+import {Link, Route, Routes} from "react-router-dom"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "./App.css"
-import { Calendar2Check } from "react-bootstrap-icons"
+import {Calendar2Check} from "react-bootstrap-icons"
 import HeaderComponent from "./components/HeaderComponent"
 import FooterComponent from "./components/FooterComponent"
 
 import AuthService from "./services/auth.service"
-import { ROUTERS } from "const/routers"
+import {ROUTERS} from "const/routers"
 
 const App = () => {
    const [showModeratorBoard, setShowModeratorBoard] = useState(false)
@@ -34,10 +34,10 @@ const App = () => {
 
       <div>
          <nav className="navbar navbar-expand navbar-light bg-light">
-          
+
             <Link to="/"
-               className="task-tracking d-flex align-items-center mb-2 mb-md-0 text-dark text-decoration-none">
-               <Calendar2Check color="orange" size={36} /><span className="nameProgect">Task tracking</span>
+                  className="task-tracking d-flex align-items-center mb-2 mb-md-0 text-dark text-decoration-none">
+               <Calendar2Check color="orange" size={36}/><span className="nameProgect">Task tracking</span>
             </Link>
 
             <div className="navbar-nav mr-auto">
@@ -75,7 +75,7 @@ const App = () => {
 
             {currentUser ? (
                <div className="navbar-nav ml-auto">
-               
+
                   <li className="nav-item">
                      <a href="/login" className="nav-link" onClick={logOut}>
                         LogOut
@@ -102,13 +102,13 @@ const App = () => {
 
          <div className="container">
             {currentUser ? (
-               <HeaderComponent />) : (<div></div>)}
+               <HeaderComponent/>) : (<div></div>)}
 
             <Routes>
-               {ROUTERS.map(x => <Route {...x} />)}
+               {ROUTERS.map((x, i) => <Route key={i} {...x} />)}
             </Routes>
-         
-            <FooterComponent />
+
+            <FooterComponent/>
          </div>
       </div>
    )
