@@ -27,25 +27,30 @@ const Profile = () => {
           currentUser.roles.map((role, index) => <li key={index}>{role}</li>)}
       </ul>
 
-      <form class="row g-3">
-      <div class="col-md-6">
-          <label for="inputFirstName" class="form-label">First name</label>
-          <input type="text" class="form-control" id="inputFirstName" />
+      <div className="mb-3">
+        <label for="formFile" className="form-label">Default file input example</label>
+        <input className="form-control" type="file" id="formFile"/>
+      </div>
+
+      <form className="row g-3">
+        <div className="col-md-6">
+          <label htmlFor="inputFirstName" className="form-label">First name</label>
+          <input type="text" className="form-control" id="inputFirstName" />
         </div>
-        <div class="col-md-6">
-          <label for="inputLastName" class="form-label">Last name</label>
-          <input type="text" class="form-control" id="inputLastName" />
+        <div className="col-md-6">
+          <label htmlFor="inputLastName" className="form-label">Last name</label>
+          <input type="text" className="form-control" id="inputLastName" />
         </div>
-        <div class="col-md-6">
-          <label for="inputEmail4" class="form-label">Email</label>
-          <input type="email" class="form-control" id="inputEmail4" />
+        <div className="col-md-6">
+          <label htmlFor="inputEmail4" className="form-label">Email</label>
+          <input type="email" className="form-control" id="inputEmail4" />
         </div>
-        <div class="col-md-6">
-          <label for="inputPassword4" class="form-label">Password</label>
-          <input type="password" class="form-control" id="inputPassword4" />
+        <div className="col-md-6">
+          <label htmlFor="inputPassword4" className="form-label">Password</label>
+          <input type="password" className="form-control" id="inputPassword4" />
         </div>
-        {/* <div class="col-12">
-          <label for="inputAddress" class="form-label">Address</label>
+        {/* <div className="col-12">
+          <label htmlFor="inputAddress" className="form-label">Address</label>
           <input
             type="text"
             className="form-control"
@@ -56,28 +61,28 @@ const Profile = () => {
           />
 
         </div>
-        <div class="col-12">
-          <label for="inputAddress2" class="form-label">Address 2</label>
-          <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" />
+        <div className="col-12">
+          <label htmlFor="inputAddress2" className="form-label">Address 2</label>
+          <input type="text" className="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" />
         </div> */}
-        <div class="col-md-6">
-          <label for="inputCity" class="form-label">City</label>
-          <input type="text" class="form-control" id="inputCity" />
+        <div className="col-md-6">
+          <label htmlFor="inputCity" className="form-label">City</label>
+          <input type="text" className="form-control" id="inputCity" />
         </div>
-        <div class="col-md-4">
-          <label for="inputState" class="form-label">State</label>
-          <select id="inputState" class="form-select">
-            <option selected>Choose...</option>
+        <div className="col-md-4">
+          <label htmlFor="inputState" className="form-label">State</label>
+          <select id="inputState" className="form-select">
+            <option defaultValue>Choose...</option>
             <option>...</option>
           </select>
         </div>
-        <div class="col-md-2">
-          <label for="inputZip" class="form-label">Zip</label>
-          <input type="text" class="form-control" id="inputZip" />
+        <div className="col-md-2">
+          <label htmlFor="inputZip" className="form-label">Zip</label>
+          <input type="text" className="form-control" id="inputZip" />
         </div>
 
-        <div class="col-12">
-          <button type="submit" class="btn btn-primary">Sign in</button>
+        <div className="col-12">
+          <button type="submit" className="btn btn-primary">Sign in</button>
         </div>
       </form>
     </div>

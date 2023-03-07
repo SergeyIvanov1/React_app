@@ -25,7 +25,11 @@ const TableTodoComponent = (props) => {
    const retrieveTasks = () => {
       TaskService.getAll()
          .then((response) => {
-            setTasks(response.data)
+            if (Array.isArray(response.data)) {
+               setTasks(response.data)
+            } else {
+               console.log('Массив данных c сервера не получен. Объект data пустой')
+            }
          })
          .catch((e) => {
             console.log(e)
@@ -101,8 +105,37 @@ const TableTodoComponent = (props) => {
             accessor: "hours",
          },
          {
-            Header: "Tags",
+            Header: "Tags",            
             accessor: "tags",
+            Cell: (props) => {
+               const rowIdx = props.row.id
+               return (
+                  <div >
+                     {tasksRef.current[rowIdx].tags.map((tag) => {
+                        return (
+                           <div className="tags-in-container" style={{background: tag.color}}>
+                                <p>{tag.name}</p> 
+                           </div>
+                        )
+                        })}                     
+                  </div>
+               )
+            },
+         },
+         {
+            Header: "Start date",
+            accessor: "actualStartDate",
+            Cell: (props) => {
+               const actualStartDate = props.row.actualStartDate
+               return (
+                  <p>{new Date(actualStartDate).toLocaleString()}</p>
+                  
+               )
+            },
+         },
+         {
+            Header: "End date",
+            accessor: "actualEndDate",
          },
 
          // {
@@ -121,7 +154,7 @@ const TableTodoComponent = (props) => {
                   <div className="navbar-nav ml-auto">
                      <li className="nav-item">
                         <Link to={"/tasks/" + tasksRef.current[rowIdx].id} className="nav-link">
-                           <DoorOpen style={{ 'margin-left': '20px' }} />
+                           <DoorOpen style={{  fontSize: '22', color: 'orange' }} />
                         </Link>
                      </li>
                   </div>
@@ -144,7 +177,7 @@ const TableTodoComponent = (props) => {
    })
 
    return (
-      <div className="list row">
+      <div className="container">
          <div className="col-md-8">
             <div className="input-group mb-3">
 
@@ -161,13 +194,14 @@ const TableTodoComponent = (props) => {
                      onClick={findByTitle}>
                      Search
                   </button>
-
                </div>
+
             </div>
          </div>
 
-         <div className="col-md-12 list">
-
+         <div
+         // style={{border: '1px solid gray'}}
+         >
             <table className="table table-striped table-bordered" {...getTableProps()}>
 
                <thead>
@@ -177,18 +211,15 @@ const TableTodoComponent = (props) => {
 
                         {headerGroup.headers.map((column) => (
                            <th {...column.getHeaderProps()}>
-
                               {column.render("Header")}
                            </th>
 
                         ))}
                      </tr>
-
                   ))}
                </thead>
 
                <tbody {...getTableBodyProps()}>
-
                   {rows.map((row, i) => {
                      prepareRow(row)
                      return (
@@ -208,6 +239,35 @@ const TableTodoComponent = (props) => {
                </tbody>
 
             </table>
+            {/* <table class="table">
+               <thead>
+                  <tr>
+                     <th scope="col">#</th>
+                     <th scope="col">First</th>
+                     <th scope="col">Last</th>
+                     <th scope="col">Handle</th>
+                  </tr>
+               </thead>
+               <tbody class="table-group-divider">
+                  <tr>
+                     <th scope="row">1</th>
+                     <td>Mark</td>
+                     <td>Otto</td>
+                     <td>@mdo</td>
+                  </tr>
+                  <tr>
+                     <th scope="row">2</th>
+                     <td>Jacob</td>
+                     <td>Thornton</td>
+                     <td>@fat</td>
+                  </tr>
+                  <tr>
+                     <th scope="row">3</th>
+                     <td colspan="2">Larry the Bird</td>
+                     <td>@twitter</td>
+                  </tr>
+               </tbody>
+            </table> */}
          </div>
 
          <div className="col-md-8">

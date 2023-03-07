@@ -148,7 +148,7 @@ const Task = props => {
                                 <div className="form-group">
                                     <label htmlFor="content">Status</label>
                                     <select className="form-select form-select-md" aria-label=".form-select-md example" required>
-                                        <option selected>{currentTask.status}</option>
+                                        <option defaultValue>{currentTask.status}</option>
                                         <option value={currentTask.status}>To Do</option>
                                         <option value={currentTask.status}>In progress</option>
                                         <option value={currentTask.status}>Code review</option>
@@ -160,7 +160,7 @@ const Task = props => {
                                 <div className="form-group">
                                     <label htmlFor="content">Priority</label>
                                     <select className="form-select form-select-md" aria-label=".form-select-md example" required>
-                                        <option selected>{currentTask.priority}</option>
+                                        <option defaultValue>{currentTask.priority}</option>
                                         <option value={currentTask.priority}>Low</option>
                                         <option value={currentTask.priority}>Medium</option>
                                         <option value={currentTask.priority}>High</option>
