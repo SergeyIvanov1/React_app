@@ -8,6 +8,7 @@ import Home from "components/Home"
 import Login from "components/security/login"
 import Register from "components/security/Register"
 import Profile from "components/Profile"
+import TeamsComponent from "../components/TeamsComponent"
 import BoardUser from "components/users/BoardUser"
 import BoardModerator from "components/users/BoardModerator"
 import BoardAdmin from "components/users/BoardAdmin"
@@ -23,11 +24,10 @@ export const ROUTERS = [
    {path: "/register", element: <Register/>},
    {path: "/login", element: <Login/>},
    {path: "/home", element: <Home/>},
-   // {path: "/login2", element: <Login2/>},
-   // {path: "/register2", element: <Register2/>},
    {path: "/profile", element: <Profile/>},
    {path: "/user", element: <BoardUser/>},
    {path: "/mod", element: <BoardModerator/>},
    {path: "/admin", element: <BoardAdmin/>},
    {path: "/verify/:token", element: <Verify/>},
+   {path: "/teams", element: <TeamsComponent/>},
 ]

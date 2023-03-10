@@ -20,14 +20,11 @@ class FooterComponent extends Component {
 
                         <ul className="nav col-md-4 justify-content-end list-unstyled d-flex">
 
-                            <li className="ms-3"><a className="text-muted" href="https://github.com/SergeyIvanov1"><Github />
-                            {/* <use xmlnsXlink="#github" /> */}
+                            <li className="ms-3"><a className="text-muted" href="https://github.com/SergeyIvanov1"><Github />                        
                             </a></li>
-                            <li className="ms-3"><a className="text-muted" href="https://www.linkedin.com/in/%D1%81%D0%B5%D1%80%D0%B3%D0%B5%D0%B9-%D0%B8%D0%B2%D0%B0%D0%BD%D0%BE%D0%B2-75790325b/"><Linkedin />
-                            {/* <use xmlnsXlink="#github" /> */}
+                            <li className="ms-3"><a className="text-muted" href="https://www.linkedin.com/in/%D1%81%D0%B5%D1%80%D0%B3%D0%B5%D0%B9-%D0%B8%D0%B2%D0%B0%D0%BD%D0%BE%D0%B2-75790325b/"><Linkedin />                            
                             </a></li>
-                            <li className="ms-3"><a className="text-muted" href="https://t.me/m_ivanov_s"><Telegram />
-                            {/* <use xmlnsXlink="#github" /> */}
+                            <li className="ms-3"><a className="text-muted" href="https://t.me/m_ivanov_s"><Telegram />                            
                             </a></li>
                         </ul>
                     </footer>

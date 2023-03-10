@@ -3,11 +3,7 @@ import TaskService from "../../../services/TaskService";
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import TaskCard from './TaskCard';
 import styled from '@emotion/styled';
-import { v4 as uuidv4 } from 'uuid';
-// import CustomAvatar from '../TableComponents/CustomAvatar'
-// import { ReactComponent as RedArrow } from '../../assets/icons/High.svg'
-// import { ReactComponent as YellowArrow } from '../../assets/icons/Medium.svg'
-// import { ReactComponent as BlueArrow } from '../../assets/icons/Low.svg'
+// import { fromBackend } from './KanbanData';
 
 const Container = styled.div`
   display: flex;
@@ -40,31 +36,52 @@ const Title = styled.span`
 `;
 
 const TasksList = () => {
+// console.log(fromBackend)
+
+    const [tasks, setTasks] = useState([]);
+
     useEffect(() => {
         retrieveTasks();
     }, []);
 
-    const [tasks, setTasks] = useState([]);
+    console.log(tasks) // todo remove
+
     const columnsFromBackend = {
-        [uuidv4()]: {
+        toDo: {
             title: 'To-do',
-            items: tasks,
+            items: [],
         },
-        [uuidv4()]: {
+        inProgress: {
             title: 'In Progress',
             items: [],
         },
-        [uuidv4()]: {
+        done: {
             title: 'Done',
             items: [],
         },
     };
-
+    useEffect(() => {
+        retrieveTasks();
+    }, []);
+    console.log(tasks) // todo remove
 
     const [currentTask, setCurrentTask] = useState(null);
-    // const [currentIndex, setCurrentIndex] = useState(-1);
+    const [currentIndex, setCurrentIndex] = useState(-1);
     const [searchTitle, setSearchTitle] = useState("");
+    console.log(columnsFromBackend) // todo remove
     const [columns, setColumns] = useState(columnsFromBackend);
+    console.log(columns) // todo remove
+    // setColumns((prevState) => ({
+    //     ...prevState,
+    //     name: 'newName',
+    //   }));
+
+
+    // console.log(columnsFromBackend) // todo remove
+
+   
+    
+    
 
     const onDragEnd = (result, columns, setColumns) => {
         if (!result.destination) return;
@@ -111,7 +128,7 @@ const TasksList = () => {
         TaskService.getAll()
             .then(response => {
                 setTasks(response.data);
-                // console.log(response.data);
+                console.log(response.data); // todo remove
             })
             .catch(e => {
                 console.log(e);
@@ -124,10 +141,10 @@ const TasksList = () => {
         // setCurrentIndex(-1);
     };
 
-    // const setActiveTask = (task, index) => {
-    //     setCurrentTask(task);
-    //     setCurrentIndex(index);
-    // };
+    const setActiveTask = (task, index) => {
+        setCurrentTask(task);
+        // setCurrentIndex(index);
+    };
 
     const removeAllTasks = () => {
         TaskService.removeAll()
@@ -186,6 +203,8 @@ const TasksList = () => {
 
                             {/* заполняем DragDropContext columns. В каждом Column выводим таск компонент */}
                             {Object.entries(columns).map(([columnId, column], index) => {
+
+                                console.log(columns) // todo remove
                                 return (
                                     // работаем с областью Column. У каждой области назначаем columnId
                                     <Droppable key={columnId} droppableId={columnId}>
@@ -212,15 +231,9 @@ const TasksList = () => {
                         </TaskColumnStyles>
                     </Container>
                 </DragDropContext>
-            </div>          
+            </div>
         </div>
     );
 };
 
 export default TasksList;
-
-// <span className="priority">
-// {item.Priority === 'High' ? (<RedArrow />) : item.Priority === 'Medium' ? (<YellowArrow />) : (<BlueArrow />)}
-// </span>
-// <div><CustomAvatar name={item.Assignee} isTable={false} size={16} /></div>
-

@@ -28,7 +28,7 @@ const Profile = () => {
       </ul>
 
       <div className="mb-3">
-        <label for="formFile" className="form-label">Default file input example</label>
+        <label htmlFor="formFile" className="form-label">Default file input example</label>
         <input className="form-control" type="file" id="formFile"/>
       </div>
 

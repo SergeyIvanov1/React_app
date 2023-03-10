@@ -32,10 +32,6 @@ const Task = props => {
             });
     };
 
-    //   useEffect(() => {
-    //     getTask(props.match.params.id);
-    //   }, [props.match.params.id]);
-
     useEffect(() => {
         if (id)
             getTask(id);
@@ -89,33 +85,22 @@ const Task = props => {
 
     return (
         <div >
-            <div className="list row">
+            <div >
                 {currentTask ? (
-                    <div className="edit-form">
-                        <div className="col-md-12">
-                            <h4>Task</h4>
+                    <div className=" container text-left">
+                        <div className=" row align-items-start">
+                            <div className=" col-md-4">
 
-                            <form>
-                                <div className="form-group">
-                                    <label htmlFor="title">Title</label>
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        id="title"
-                                        name="title"
-                                        value={currentTask.title}
-                                        onChange={handleInputChange} />
+                                <h4>Details: </h4>
+                                <div className="task-description">
+                                    <p>Title: {currentTask.title}</p>
+                                    <p>Current status: {currentTask.status}</p>
+                                    <p>Priority: {currentTask.priority}</p>
                                 </div>
 
-                                <div className="form-group">
-                                    <label htmlFor="description">Short description</label>
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        id="description"
-                                        name="description"
-                                        value={currentTask.description}
-                                        onChange={handleInputChange} />
+                                <h4>Description: </h4>
+                                <div className="task-description">
+                                    <p>{currentTask.description}</p>
                                 </div>
 
                                 <button className="adding btn btn-primary"
@@ -133,52 +118,41 @@ const Task = props => {
                                         <p>{currentTask.content}</p>
                                     </div>
                                 </div>
-
-                                {/* <div className="form-group">
-                                    <label htmlFor="content">Content</label>
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        id="content"
-                                        name="content"
-                                        value={currentTask.content}
-                                        onChange={handleInputChange} />
-                                </div> */}
-
-                                <div className="form-group">
-                                    <label htmlFor="content">Status</label>
-                                    <select className="form-select form-select-md" aria-label=".form-select-md example" required>
-                                        <option defaultValue>{currentTask.status}</option>
-                                        <option value={currentTask.status}>To Do</option>
-                                        <option value={currentTask.status}>In progress</option>
-                                        <option value={currentTask.status}>Code review</option>
-                                        <option value={currentTask.status}>Tests</option>
-                                        <option value={currentTask.status}>Done</option>
-                                    </select>
+                            </div>
+                            <div className="col-md-4">
+                                <h4>Time frames: </h4>
+                                <div className="task-description">
+                                    <p>Count hours for task: {currentTask.hours}</p>
+                                    <p>Time start: {currentTask.actualStartDate}</p>
+                                    <p>Time end: {currentTask.actualEndDate}</p>
+                                </div>
+                                <h4>Tags: </h4>
+                                <div className="tag">
+                                    <ul >
+                                        {currentTask.tags && currentTask.tags.map((tag, i) => {
+                                            return (
+                                                <li key={i}
+                                                    style={{ color: tag.color }}
+                                                    className=" mb-2 ">
+                                                    {tag.name}
+                                                </li>)
+                                        })}
+                                    </ul>
+                                    {/* nav col-12 col-md-auto mb-2 justify-content-center mb-md-0 nav-link px-2  */}
                                 </div>
 
-                                <div className="form-group">
-                                    <label htmlFor="content">Priority</label>
-                                    <select className="form-select form-select-md" aria-label=".form-select-md example" required>
-                                        <option defaultValue>{currentTask.priority}</option>
-                                        <option value={currentTask.priority}>Low</option>
-                                        <option value={currentTask.priority}>Medium</option>
-                                        <option value={currentTask.priority}>High</option>
-                                    </select>
+                            </div>
+                            <div className=" col-md-4">
+                            <h4>People: </h4>
+                                <div className="task-description">
+                                    <p>This task assigned: </p>
+                                    
                                 </div>
 
-                                <div className="form-group">
-                                    <label htmlFor="hours">Hours</label>
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        id="hours"
-                                        name="hours"
-                                        value={currentTask.hours}
-                                        onChange={handleInputChange} />
-                                </div>
-                            </form>
+                            </div>
                         </div>
+
+           
 
                         <button className="adding btn btn-primary" onClick={deleteTask}>
                             Delete
@@ -199,17 +173,12 @@ const Task = props => {
                         <p>Please click on a Task...</p>
                     </div>
                 )}
-
-                <div className="comments col-md-6">
-                    <h4>Comments</h4>
-                    <div className="comments-field">
-
-
-                    </div>
-
-                </div>
-
             </div>
+
+            <h3>Comments</h3>
+            <div class=" border-bottom"></div>
+
+
         </div>
     );
 };
