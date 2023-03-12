@@ -27,6 +27,7 @@ const TableTodoComponent = (props) => {
          .then((response) => {
             if (Array.isArray(response.data)) {
                setTasks(response.data)
+               console.log(response.data)
             } else {
                console.log('Массив данных c сервера не получен. Объект data пустой')
             }

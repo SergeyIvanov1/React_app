@@ -93,7 +93,8 @@ const Task = props => {
                                     type="button"
                                     data-bs-toggle="offcanvas"
                                     data-bs-target="#offcanvasScrolling"
-                                    aria-controls="offcanvasScrolling">Show content</button>
+                                    aria-controls="offcanvasScrolling">Show content
+                                </button>
 
                                 <div className="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabIndex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
                                     <div className="offcanvas-header">
@@ -159,12 +160,12 @@ const Task = props => {
                 )}
             </div>
 
-            <div class="container text-left">
-                <div class="row">
-                    <div class="col ">
+            <div className="container text-left">
+                <div className="row">
+                    <div className="col ">
                         <h3 className=" margin-30">Comments</h3>
                     </div>
-                    <div class="col ">
+                    <div className="col ">
                         {hideComment ? (
                             <button
                                 onClick={() => setHideComment(false)}
@@ -172,19 +173,21 @@ const Task = props => {
                                 <ArrowBarDown />
                             </button>
                         ) : (
-                            <button
-                                onClick={() => setHideComment(true)}
-                                className="margin-30">
-                                <ArrowBarUp />
-                            </button>
+                            <div className="container margin-30"></div>
+                            // <button
+                            //     onClick={() => setHideComment(true)}
+                            //     className="margin-30">
+                            //     <ArrowBarUp />
+                            // </button>
                         )}
 
                     </div>
-                    <div class="col "></div>
-                    <div class="col "></div>
-                    <div class="col "></div>
-                    <div class="col "></div>
-                    <div class="col "></div>
+                    <div className="col "></div>
+                    <div className="col "></div>
+                    <div className="col "></div>
+                    <div className="col "></div>
+                    <div className="col "></div>
+
                 </div>
             </div>
             <div className=" border-bottom margin-30"></div>
@@ -194,7 +197,7 @@ const Task = props => {
                 />
             ) : (
                 <div className="container margin-30">
-                    <p>No one has left comments here yet...</p>
+                    {/* <p>No one has left comments here yet...</p> */}
                 </div>
             )}
 

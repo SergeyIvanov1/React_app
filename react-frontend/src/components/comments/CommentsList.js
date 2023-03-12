@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import CommentService from "../../services/CommentService";
+import { EmojiFrown } from "react-bootstrap-icons";
+import { EmojiSmile } from "react-bootstrap-icons";
 
 const CommentsList = ({ id, comments }) => {
 
     const initialServerObjectState = {
         text: '',
+        updateAt: '',
         taskId: id,
         username: 'Sergey',
         comments: comments,
@@ -20,13 +23,13 @@ const CommentsList = ({ id, comments }) => {
 
     const saveServerObject = () => {
         const data = {
+            updateAt: serverObject.updateAt,
             text: serverObject.text,
             taskId: serverObject.taskId,
             username: serverObject.username,
             comments: serverObject.comments
         }
 
-        // функция для получения Task состояния и отправки запроса POST в веб-API
         CommentService.create(data)
             .then(response => {
                 setServerObject(response.data)
@@ -67,25 +70,65 @@ const CommentsList = ({ id, comments }) => {
                         return (
                             <div key={i}
                                 // style={{ color: tag.color }}
-                                className="container margin-30">
-                                <div className="container text-left border">
+                                className=" margin-30">
+                                <div className="  ">
                                     <div className="row">
 
-                                        <div className="avatar-comment border">
+                                        <div className="avatar-comment ">
                                             <img
                                                 src={require('../../images/defaultAvatar.png')}
                                                 className="img-fluid avatar"
                                                 alt="" />
                                         </div>
                                         <div className="col-md-11">
-                                        <div className="border comment-text">
-                                            {/* {comment.user.username} */}
-                                            {comment.updateAt}
-                                        </div>
+                                            <div className=" comment-text comment-meta">
+                                                {/* {comment.username}    {comment.updateAt} */}
+                                                <div className="container">
+                                                    <div className="row">
+                                                        <div className="col-md-8  ">
+                                                            {comment.username}
+                                                        </div>
+                                                        {/* <div className="col-md-4  text-left">
+                                                        </div> */}
+                                                        <div className="col-md-4  ">
 
-                                        
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                             <div className="col-md-11 border comment-text">
                                                 {comment.text}
+                                            </div>
+                                        </div>
+                                        <div className=" ">
+                                            <div className="row">
+                                                <div className="col " style={{textAlign: 'center', paddingTop: '10px'}}>
+                                                    <button className="answer " >Answer</button>
+                                                </div>
+                                                <div className="col "></div>
+                                                <div className="col "></div>
+                                                <div className="col comment-meta">
+                                                    {comment.updateAt}
+                                                </div>
+
+                                                <div className="col ">
+                                                    <div className="btn-group-emoji">
+                                                        <button
+                                                        // onClick={deleteTask}
+                                                        >
+                                                            <EmojiSmile style={{backgroundColor: 'bisque', borderRadius: '50%'}}/>
+                                                        </button>
+
+                                                        <button>33333</button>
+
+                                                        <button className="btn-group-emoji"
+                                                        // onClick={deleteTask}
+                                                        >
+                                                            <EmojiFrown style={{backgroundColor: 'lightpink', borderRadius: '50%'}}/>
+                                                        </button>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -94,7 +137,7 @@ const CommentsList = ({ id, comments }) => {
                     })}
                 </div>) : (
                 <div className="container margin-30">
-                    <p>No one has left comments here yet...</p>
+
                 </div>
             )}
         </div>
