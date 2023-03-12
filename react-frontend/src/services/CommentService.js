@@ -1,11 +1,13 @@
-// import {axiosInstance} from "../http-common"
+import {axiosInstance} from "../http-common"
 
-// export default {
-//    getAll     : () => axiosInstance.get("/comments"),
-//    get        : id => axiosInstance.get(`/comments/${id}`),
-//    create     : data => axiosInstance.post("/comments", data),
-//    update     : (id, data) => axiosInstance.put(`/comments/${id}`, data),
-//    remove     : id => axiosInstance.delete(`/comments/${id}`),
-//    removeAll  : () => axiosInstance.delete(`/comments`),
-//    findByTitle: title => axiosInstance.get(`/comments?title=${title}`),
-// }
+const exportedObject = {
+   getAll     : id => axiosInstance.get(`/taskComments/task/${id}`),
+   get        : id => axiosInstance.get(`/taskComments/${id}`),
+   create     : data => axiosInstance.post("/taskComments", data),
+   update     : (id, data) => axiosInstance.put(`/comments/${id}`, data),
+   remove     : id => axiosInstance.delete(`/taskComments/${id}`),
+   removeAll  : () => axiosInstance.delete(`/taskComments`),
+   findByTitle: title => axiosInstance.get(`/taskComments?title=${title}`),
+}
+
+export default exportedObject;

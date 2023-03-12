@@ -1,150 +1,102 @@
 import React, { useState, useEffect } from "react";
-import CommentDataService from "../../services/CommentService";
-import { Link } from "react-router-dom";
+import CommentService from "../../services/CommentService";
 
-const CommentsList = () => {
-    const [comments, setComments] = useState([]);
-    const [currentComment, setCurrentComment] = useState(null);
-    const [currentIndex, setCurrentIndex] = useState(-1);
-    const [searchTitle, setSearchTitle] = useState("");
+const CommentsList = ({ id, comments }) => {
 
-    useEffect(() => {
-        retrieveComments();
-    }, []);
+    const initialServerObjectState = {
+        text: '',
+        taskId: id,
+        username: 'Sergey',
+        comments: comments,
+        //   published  : false
+    }
 
-    const onChangeSearchTitle = e => {
-        const searchTitle = e.target.value;
-        setSearchTitle(searchTitle);
-    };
+    const [serverObject, setServerObject] = useState(initialServerObjectState)
 
-    const retrieveComments = () => {
-        CommentDataService.getAll()
+    const handleServerObjectInputChange = event => {
+        const { name, value } = event.target
+        setServerObject({ ...serverObject, [name]: value })
+    }
+
+    const saveServerObject = () => {
+        const data = {
+            text: serverObject.text,
+            taskId: serverObject.taskId,
+            username: serverObject.username,
+            comments: serverObject.comments
+        }
+
+        // функция для получения Task состояния и отправки запроса POST в веб-API
+        CommentService.create(data)
             .then(response => {
-                setComments(response.data);
-                console.log(response.data);
+                setServerObject(response.data)
+                console.log(response.data)
             })
             .catch(e => {
-                console.log(e);
-            });
-    };
-
-    const refreshList = () => {
-        retrieveComments();
-        setCurrentComment(null);
-        setCurrentIndex(-1);
-    };
-
-    const setActiveComment = (comment, index) => {
-        setCurrentComment(comment);
-        setCurrentIndex(index);
-    };
-
-    const removeAllComments = () => {
-        CommentDataService.removeAll()
-            .then(response => {
-                console.log(response.data);
-                refreshList();
+                console.log(e)
             })
-            .catch(e => {
-                console.log(e);
-            });
-    };
-
-    const findByTitle = () => {
-        CommentDataService.findByTitle(searchTitle)
-            .then(response => {
-                setComments(response.data);
-                console.log(response.data);
-            })
-            .catch(e => {
-                console.log(e);
-            });
-    };
+    }
 
     return (
-        <div className="list row">
-            <div className="col-md-8">
-                <div className="input-group mb-3">
-                    <input
-                        type="text"
+        <div >
+            <div className="container margin-30">
+                <form >
+                    <label htmlFor="exampleFormControlTextarea1">New comment</label>
+                    <textarea
                         className="form-control"
-                        placeholder="Search by title"
-                        value={searchTitle}
-                        onChange={onChangeSearchTitle}
-                    />
-                    <div className="input-group-append">
-                        <button
-                            className="btn btn-outline-secondary"
-                            type="button"
-                            onClick={findByTitle}
-                        >
-                            Search
-                        </button>
-                    </div>
+                        id="exampleFormControlTextarea1"
+                        rows="3"
+                        name="text"
+                        value={serverObject.text}
+                        onChange={handleServerObjectInputChange}
+                        placeholder="Input text"
+                        required>
+                    </textarea>
+                    <button
+                        onClick={saveServerObject}
+                        className="comment-button">
+                        Send
+                    </button>
+                </form>
+            </div>
+
+            {serverObject.comments ? (
+                <div className="container margin-30">
+
+                    {serverObject.comments && serverObject.comments.map((comment, i) => {
+                        return (
+                            <div key={i}
+                                // style={{ color: tag.color }}
+                                className="container margin-30">
+                                <div className="container text-left border">
+                                    <div className="row">
+
+                                        <div className="avatar-comment border">
+                                            <img
+                                                src={require('../../images/defaultAvatar.png')}
+                                                className="img-fluid avatar"
+                                                alt="" />
+                                        </div>
+                                        <div className="col-md-11">
+                                        <div className="border comment-text">
+                                            {/* {comment.user.username} */}
+                                            {comment.updateAt}
+                                        </div>
+
+                                        
+                                            <div className="col-md-11 border comment-text">
+                                                {comment.text}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>)
+                    })}
+                </div>) : (
+                <div className="container margin-30">
+                    <p>No one has left comments here yet...</p>
                 </div>
-            </div>
-            <div className="col-md-6">
-                <h4>Comments List</h4>
-
-                <ul className="list-group">
-                    {comments &&
-                        comments.map((comment, index) => (
-                            <li
-                                className={
-                                    "list-group-item " + (index === currentIndex ? "active" : "")
-                                }
-                                onClick={() => setActiveComment(comment, index)}
-                                key={index}
-                            >
-                                {comment.title}
-                            </li>
-                        ))}
-                </ul>
-
-                <button
-                    className="m-3 btn btn-sm btn-danger"
-                    onClick={removeAllComments}
-                >
-                    Remove All
-                </button>
-            </div>
-            <div className="col-md-6">
-                {currentComment ? (
-                    <div>
-                        <h4>Comment</h4>
-                        <div>
-                            <label>
-                                <strong>Title:</strong>
-                            </label>{" "}
-                            {currentComment.title}
-                        </div>
-                        <div>
-                            <label>
-                                <strong>Description:</strong>
-                            </label>{" "}
-                            {currentComment.description}
-                        </div>
-                        <div>
-                            <label>
-                                <strong>Status:</strong>
-                            </label>{" "}
-                            {currentComment.published ? "Published" : "Pending"}
-                        </div>
-
-                        <div>Edit</div>
-                        <Link
-                            to={"/comments/" + currentComment.id}
-                            className="badge badge-warning">
-                            Edit
-                        </Link>
-                    </div>
-                ) : (
-                    <div>
-                        <br />
-                        <p>Please click on a Comment...</p>
-                    </div>
-                )}
-            </div>
+            )}
         </div>
     );
 };

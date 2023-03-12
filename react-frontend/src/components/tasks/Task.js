@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
 import TaskService from "../../services/TaskService";
+import CommentsList from "../comments/CommentsList";
+import { ArrowBarDown } from "react-bootstrap-icons";
+import { ArrowBarUp } from "react-bootstrap-icons";
 
 const Task = props => {
 
@@ -20,6 +23,7 @@ const Task = props => {
 
     const [currentTask, setCurrentTask] = useState(initialTaskState);
     const [message, setMessage] = useState("");
+    const [hideComment, setHideComment] = useState(true)
 
     const getTask = id => {
         TaskService.get(id)
@@ -41,25 +45,6 @@ const Task = props => {
         const { name, value } = event.target;
         setCurrentTask({ ...currentTask, [name]: value });
     };
-
-    //   const updatePublished = status => {
-    //     var data = {
-    //       id: currentTask.id,
-    //       title: currentTask.title,
-    //       description: currentTask.description,
-    //       published: status
-    //     };
-
-    //     TaskService.update(currentTask.id, data)
-    //       .then(response => {
-    //         setCurrentTask({ ...currentTask, published: status });
-    //         console.log(response.data);
-    //         setMessage("The status was updated successfully!");
-    //       })
-    //       .catch(e => {
-    //         console.log(e);
-    //       });
-    //   };
 
     const updateTask = () => {
         TaskService.update(currentTask.id, currentTask)
@@ -98,9 +83,10 @@ const Task = props => {
                                     <p>Priority: {currentTask.priority}</p>
                                 </div>
 
-                                <h4>Description: </h4>
+                                <h4>People: </h4>
                                 <div className="task-description">
-                                    <p>{currentTask.description}</p>
+                                    <p>This task assigned: </p>
+
                                 </div>
 
                                 <button className="adding btn btn-primary"
@@ -109,7 +95,7 @@ const Task = props => {
                                     data-bs-target="#offcanvasScrolling"
                                     aria-controls="offcanvasScrolling">Show content</button>
 
-                                <div className="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+                                <div className="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabIndex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
                                     <div className="offcanvas-header">
                                         <h5 className="offcanvas-title" id="offcanvasScrollingLabel">Full description content</h5>
                                         <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -142,30 +128,28 @@ const Task = props => {
                                 </div>
 
                             </div>
-                            <div className=" col-md-4">
-                            <h4>People: </h4>
+                            <div className="col-md-4">
+                                <h4>Short description: </h4>
                                 <div className="task-description">
-                                    <p>This task assigned: </p>
-                                    
+                                    <p>{currentTask.description}</p>
                                 </div>
 
+                                <div >
+                                    <button className="adding btn btn-primary" onClick={deleteTask}>
+                                        Delete
+                                    </button>
+
+                                    <button
+                                        type="submit"
+                                        className="adding btn btn-primary"
+                                        onClick={updateTask}>
+                                        Update
+                                    </button>
+                                    <br />
+                                    <p>{message}</p>
+                                </div>
                             </div>
                         </div>
-
-           
-
-                        <button className="adding btn btn-primary" onClick={deleteTask}>
-                            Delete
-                        </button>
-
-                        <button
-                            type="submit"
-                            className="adding btn btn-primary"
-                            onClick={updateTask}>
-                            Update
-                        </button>
-                        <br />
-                        <p>{message}</p>
                     </div>
                 ) : (
                     <div>
@@ -175,8 +159,45 @@ const Task = props => {
                 )}
             </div>
 
-            <h3>Comments</h3>
-            <div class=" border-bottom"></div>
+            <div class="container text-left">
+                <div class="row">
+                    <div class="col ">
+                        <h3 className=" margin-30">Comments</h3>
+                    </div>
+                    <div class="col ">
+                        {hideComment ? (
+                            <button
+                                onClick={() => setHideComment(false)}
+                                className="margin-30">
+                                <ArrowBarDown />
+                            </button>
+                        ) : (
+                            <button
+                                onClick={() => setHideComment(true)}
+                                className="margin-30">
+                                <ArrowBarUp />
+                            </button>
+                        )}
+
+                    </div>
+                    <div class="col "></div>
+                    <div class="col "></div>
+                    <div class="col "></div>
+                    <div class="col "></div>
+                    <div class="col "></div>
+                </div>
+            </div>
+            <div className=" border-bottom margin-30"></div>
+            {!hideComment ? (
+                <CommentsList id={currentTask.id} comments={currentTask.comments}
+                // key={item} index={index} 
+                />
+            ) : (
+                <div className="container margin-30">
+                    <p>No one has left comments here yet...</p>
+                </div>
+            )}
+
 
 
         </div>

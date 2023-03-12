@@ -115,3 +115,38 @@ div.task-description {
   /* border: 1px black solid; */
   padding-left: 25px;
 }
+
+/* div.btn-task-actions {
+  display:inline-block;
+  height: 100%;
+} */
+
+.border {
+  border: 1px solid black;
+}
+
+.margin-30 {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.comment-button {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  background-color: bisque;
+  border: 1px solid gray;
+  border-radius: 15%;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.comment-text{
+  padding: 15px;
+  word-wrap: break-word;
+  width: 100%;
+}
+
+.avatar-comment {
+  width: 65px;
+}
+
