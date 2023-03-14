@@ -121,13 +121,13 @@ const AddTask = () => {
             </div>
          ) : (
             <div className="container">
-               <form className="row g-3">
+               <form className="row g-3 ">
                   <h2>Adding а task</h2>
                   <div className="form-group col-md-6">
                      <label htmlFor="title">Title</label>
                      <input
                         type="text"
-                        className="form-control"
+                        className="form-control field-background"
                         id="title"
                         required
                         value={task.title}
@@ -135,11 +135,11 @@ const AddTask = () => {
                         name="title" />
                   </div>
 
-                  <div className="form-group col-md-3">
+                  <div className="form-group col-md-3 ">
                      <label htmlFor="StartDate">Start date</label>
                      <input
                         type="datetime-local"
-                        className="form-control"
+                        className="form-control field-background"
                         id="StartDate"
                         required
                         // value={task.actualStartDate}
@@ -151,7 +151,7 @@ const AddTask = () => {
                      <label htmlFor="EndDate">End date</label>
                      <input
                         type="datetime-local"
-                        className="form-control"
+                        className="form-control field-background"
                         id="EndDate"
                         required
                         // value={task.actualEndDate}
@@ -162,7 +162,7 @@ const AddTask = () => {
                   <div className="form-group col-md-6">
                      <label htmlFor="description">Description</label>
                      <textarea
-                        className="form-control"
+                        className="form-control field-background"
                         id="description"
                         rows="4"
                         name="description"
@@ -179,7 +179,7 @@ const AddTask = () => {
                         return (
                            <div className="tag" style={{ color: tag.color }}>
                               <div className="form-check">
-                                 <input className="form-check-input"
+                                 <input className="form-check-input field-background"
                                     type="radio"
                                     onChange={() => handleChoosingTag(tag)}
                                     value={tag}
@@ -246,7 +246,7 @@ const AddTask = () => {
                   <div className="form-group">
                      <label htmlFor="exampleFormControlTextarea1">Content</label>
                      <textarea
-                        className="form-control"
+                        className="form-control field-background"
                         id="exampleFormControlTextarea1"
                         rows="3"
                         name="content"
@@ -259,7 +259,7 @@ const AddTask = () => {
 
                   <div className="form-group col-md-4">
                      <label htmlFor="status" className="form-label">Status</label>
-                     <select className="form-select" id="status" required>
+                     <select className="form-select field-background" id="status" required>
                         <option defaultValue>{task.status}</option>
                         {/* <option value={task.status}>To Do</option> */}
                         <option value={task.status}>In progress</option>
@@ -271,7 +271,7 @@ const AddTask = () => {
 
                   <div className="col-md-4">
                      <label htmlFor="priority" className="form-label">Priority</label>
-                     <select className="form-select" id="priority" required>
+                     <select className="form-select field-background" id="priority" required>
                         <option defaultValue>{task.priority}</option>
                         <option value={task.priority}>Low</option>
                         {/* <option value={task.priority}>Medium</option> */}
@@ -283,7 +283,7 @@ const AddTask = () => {
                      <label htmlFor="hours">Hours</label>
                      <input
                         type="text"
-                        className="form-control"
+                        className="form-control field-background"
                         id="hours"
                         required
                         value={task.hours}

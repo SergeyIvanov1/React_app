@@ -169,7 +169,7 @@ const TasksList = () => {
     };
 
     return (
-        <div >
+        <div className="container">
             <div className="col-md-8">
                 <div className="input-group mb-3">
                     <input

@@ -199,3 +199,8 @@ button.answer {
   background-color: ghostwhite;
   color: gray;
 }
+
+.field-background {
+  background-color: rgb(243, 247, 247);
+  color: rgb(250, 240, 228);
+}

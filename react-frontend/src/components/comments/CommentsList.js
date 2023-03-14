@@ -46,7 +46,7 @@ const CommentsList = ({ id, comments }) => {
                 <form >
                     <label htmlFor="exampleFormControlTextarea1">New comment</label>
                     <textarea
-                        className="form-control"
+                        className="form-control field-background"
                         id="exampleFormControlTextarea1"
                         rows="3"
                         name="text"
@@ -73,7 +73,6 @@ const CommentsList = ({ id, comments }) => {
                                 className=" margin-30">
                                 <div className="  ">
                                     <div className="row">
-
                                         <div className="avatar-comment ">
                                             <img
                                                 src={require('../../images/defaultAvatar.png')}
@@ -81,8 +80,7 @@ const CommentsList = ({ id, comments }) => {
                                                 alt="" />
                                         </div>
                                         <div className="col-md-11">
-                                            <div className=" comment-text comment-meta">
-                                                {/* {comment.username}    {comment.updateAt} */}
+                                            <div className=" comment-text comment-meta">                                               
                                                 <div className="container">
                                                     <div className="row">
                                                         <div className="col-md-8  ">
@@ -97,7 +95,7 @@ const CommentsList = ({ id, comments }) => {
                                                 </div>
                                             </div>
 
-                                            <div className="col-md-11 border comment-text">
+                                            <div className="col-md-11 border comment-text field-background">
                                                 {comment.text}
                                             </div>
                                         </div>
